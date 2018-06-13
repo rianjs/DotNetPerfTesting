@@ -4,7 +4,7 @@ using BenchmarkDotNet.Attributes;
 
 namespace PerfTesting.Strings
 {
-    public class Substrings
+    public class SubstringTests
     {
         private static readonly StringComparison _comparison = StringComparison.Ordinal;
         private static readonly string _smallHaystack = _ch1TheHobbit.Substring(0, 100);
@@ -36,6 +36,20 @@ namespace PerfTesting.Strings
 
         [Benchmark]
         public int CountBigWithStaticRegex() => Regex.Match(_ch1TheHobbit, _needle).Length;
+
+        [Benchmark]
+        public void SearchBigWithCompiledRegex()
+        {
+            var compiled = new Regex(_needle, RegexOptions.Compiled);
+            var search = compiled.Match(_ch1TheHobbit);
+        }
+
+        [Benchmark]
+        public void SearchBigWithRegex()
+        {
+            var regex = new Regex(_needle);
+            var search = regex.Match(_needle);
+        }
 
         #region Haystack
         private const string _ch1TheHobbit = @"Chapter I: AN UNEXPECTED PARTY
