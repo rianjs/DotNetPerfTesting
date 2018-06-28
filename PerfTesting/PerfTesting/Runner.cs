@@ -10,6 +10,7 @@ namespace PerfTesting
         {
             BenchmarkRunnerCore.Run(BenchmarkConverter.TypeToBenchmarks(typeof(SubstringTests)), t => InProcessToolchain.Instance);
             BenchmarkRunnerCore.Run(BenchmarkConverter.TypeToBenchmarks(typeof(RegexTests)), t => InProcessToolchain.Instance);
+            BenchmarkRunnerCore.Run(BenchmarkConverter.TypeToBenchmarks(typeof(StringBuilderTests)), t => InProcessToolchain.Instance);
         }
     }
 }
