@@ -16,9 +16,10 @@ namespace PerfTesting
             //BenchmarkRunnerCore.Run(BenchmarkConverter.TypeToBenchmarks(typeof(SubstringTests)), t => InProcessToolchain.Instance);
             //BenchmarkRunnerCore.Run(BenchmarkConverter.TypeToBenchmarks(typeof(RegexTests)), t => InProcessToolchain.Instance);
             //BenchmarkRunnerCore.Run(BenchmarkConverter.TypeToBenchmarks(typeof(StringBuilderTests)), t => InProcessToolchain.Instance);
-            //BenchmarkRunnerCore.Run(BenchmarkConverter.TypeToBenchmarks(typeof(SynchronizationTests)), t => InProcessToolchain.Instance);
+            BenchmarkRunnerCore.Run(BenchmarkConverter.TypeToBenchmarks(typeof(SynchronizationTests)), t => InProcessToolchain.Instance);
             //BenchmarkRunnerCore.Run(BenchmarkConverter.TypeToBenchmarks(typeof(DateTimeTests)), t => InProcessToolchain.Instance);
-            BenchmarkRunnerCore.Run(BenchmarkConverter.TypeToBenchmarks(typeof(MathTrivia)), t => InProcessToolchain.Instance);
+            //BenchmarkRunnerCore.Run(BenchmarkConverter.TypeToBenchmarks(typeof(MathTrivia)), t => InProcessToolchain.Instance);
+//            BenchmarkRunnerCore.Run(BenchmarkConverter.TypeToBenchmarks(typeof(NodaTimeShootout)), t => InProcessToolchain.Instance);
         }
     }
 }

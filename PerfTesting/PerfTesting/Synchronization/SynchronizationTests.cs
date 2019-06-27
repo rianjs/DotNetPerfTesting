@@ -40,5 +40,11 @@ namespace PerfTesting.Synchronization
                 return _lockDictionary.ContainsKey("9");
             }
         }
+
+        [Benchmark]
+        public bool DictionaryValueExists()
+        {
+            return _lockDictionary.ContainsKey("9");
+        }
     }
 }
