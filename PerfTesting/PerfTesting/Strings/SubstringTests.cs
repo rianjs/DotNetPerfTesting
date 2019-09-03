@@ -4,7 +4,7 @@ using BenchmarkDotNet.Attributes;
 
 namespace PerfTesting.Strings
 {
-    public class SubstringTests
+    public class cd ..SubstringTests
     {
         private static readonly StringComparison _comparison = StringComparison.Ordinal;
         private static readonly string _smallHaystack = _ch1TheHobbit.Substring(0, 100);
