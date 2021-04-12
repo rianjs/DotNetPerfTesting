@@ -109,5 +109,27 @@ ORDER BY
 
             return builder.ToString();
         }
+
+        [Benchmark]
+        public string InterpolateAppend()
+        {
+            var sb = new StringBuilder();
+            for (var i = 0; i < 10; i++)
+            {
+                sb.AppendLine($"Hello {i:0000}");
+            }
+            return sb.ToString();
+        }
+        
+        [Benchmark]
+        public string NaiveAppend()
+        {
+            var sb = new StringBuilder();
+            for (var i = 0; i < 10; i++)
+            {
+                sb.Append("Hello ").AppendLine(i.ToString("0000"));
+            }
+            return sb.ToString();
+        }
     }
 }
