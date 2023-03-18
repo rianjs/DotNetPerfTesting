@@ -1,58 +1,8 @@
-﻿using System;
-using System.Text.RegularExpressions;
-using BenchmarkDotNet.Attributes;
+namespace PerfTesting.Strings;
 
-namespace PerfTesting.Strings
+public static class Strings
 {
-    public class SubstringTests
-    {
-        private static readonly StringComparison _comparison = StringComparison.Ordinal;
-        private static readonly string _smallHaystack = _ch1TheHobbit.Substring(0, 100);
-        private const string _needle = "the";
-
-        private static readonly string[] _split = {_needle};
-        [Benchmark]
-        public int CountSmallWithSplit() => _smallHaystack.Split(_split, StringSplitOptions.None).Length;
-
-        [Benchmark]
-        public int CountBigWithSplit() => _ch1TheHobbit.Split(_split, StringSplitOptions.None).Length;
-
-        private static readonly Regex _compiled = new Regex(_needle, RegexOptions.Compiled);
-
-        [Benchmark]
-        public int CountSmallWithCompiledRegex() => _compiled.Match(_smallHaystack).Length;
-
-        [Benchmark]
-        public int CountBigWithCompiledRegex() => _compiled.Match(_ch1TheHobbit).Length;
-
-        [Benchmark]
-        public int CountSmallWithRegex() => new Regex(_needle).Match(_smallHaystack).Length;
-
-        [Benchmark]
-        public int CountBigWithRegex() => new Regex(_needle).Match(_ch1TheHobbit).Length;
-
-        [Benchmark]
-        public int CountSmallWithStaticRegex() => Regex.Match(_smallHaystack, _needle).Length;
-
-        [Benchmark]
-        public int CountBigWithStaticRegex() => Regex.Match(_ch1TheHobbit, _needle).Length;
-
-        [Benchmark]
-        public void SearchBigWithCompiledRegex()
-        {
-            var compiled = new Regex(_needle, RegexOptions.Compiled);
-            var search = compiled.Match(_ch1TheHobbit);
-        }
-
-        [Benchmark]
-        public void SearchBigWithRegex()
-        {
-            var regex = new Regex(_needle);
-            var search = regex.Match(_needle);
-        }
-
-        #region Haystack
-        private const string _ch1TheHobbit = @"Chapter I: AN UNEXPECTED PARTY
+    public static readonly string Haystack = @"Chapter I: AN UNEXPECTED PARTY
 
 In a hole in the ground there lived a hobbit. Not a nasty, dirty, wet hole, filled with the ends of worms and an oozy smell, nor yet a dry, bare, sandy hole with nothing in it to sit down on or to eat: it was a hobbit-hole, and that means comfort.
 
@@ -429,6 +379,6 @@ We must away, ere break of day,
 To find our long-forgotten gold.
 
 Bilbo went to sleep with that in his ears, and it gave him very uncomfortable dreams. It was long after the break of day, when he woke up.";
-        #endregion
-    }
+
+    public static readonly string SmallHaystack = Haystack.Substring(0, 100);
 }

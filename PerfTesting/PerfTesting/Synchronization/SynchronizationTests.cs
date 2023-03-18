@@ -9,10 +9,10 @@ namespace PerfTesting.Synchronization
 {
     public class SynchronizationTests
     {
-        private static readonly object _lockObject = new object();
+        private static readonly object _lockObject = new();
         private static readonly Dictionary<string, int> _lockDictionary = GetSampleData();
         private static readonly Dictionary<string, int> _semaphoreDictionary = GetSampleData();
-        private static readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
+        private static readonly SemaphoreSlim _semaphore = new(1, 1);
 
         private static Dictionary<string, int> GetSampleData()
             => Enumerable.Range(0, 16)

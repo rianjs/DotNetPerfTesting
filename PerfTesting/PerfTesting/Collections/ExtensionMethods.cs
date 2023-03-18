@@ -14,7 +14,7 @@ namespace PerfTesting.Collections
 
         [Benchmark]
         public List<int> ArrayToListViaConstructor()
-            => new List<int>(_intArray);
+            => new(_intArray);
 
         [Benchmark]
         public List<int> ArrayToListViaAddRange()
