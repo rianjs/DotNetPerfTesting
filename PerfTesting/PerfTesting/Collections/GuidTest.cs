@@ -58,4 +58,31 @@ public class GuidTest
     {
         return _guidSet.Contains(_setNeedle);
     }
+
+
+    private static readonly List<Guid> _sortedList = InitGuidSortedList();
+    private static Guid _sortedListNeedle;
+    private static List<Guid> InitGuidSortedList()
+    {
+        var l = new List<Guid>(100);
+        for (var i = 0; i < 100; i++)
+        {
+            var g = new Guid();
+            l.Add(g);
+            if (i == 67)
+            {
+                _sortedListNeedle = g;
+            }
+        }
+
+        l.Sort();
+        return l;
+    }
+
+    [Benchmark]
+    public bool ListBinarySearch()
+    {
+        var index = _sortedList.BinarySearch(_sortedListNeedle);
+        return index >= 0;
+    }
 }
