@@ -22,9 +22,25 @@ public class GuidTest
         return _guidArray.Contains(needle);
     }
 
+    private static readonly List<Guid> _sortedGuidList = _guidList.OrderBy(g => g).ToList();
+    [Benchmark]
+    public bool SortedListContains()
+    {
+        var needle = _sortedGuidList[67];
+        return _sortedGuidList.Contains(needle);
+    }
+
     private static readonly Guid[] _guidArray = GetGuidArray();
     private static Guid[] GetGuidArray()
         => Enumerable.Range(0, 100).Select(_ => new Guid()).ToArray();
+
+    private static readonly Guid[] _sortedGuidArray = _sortedGuidList.ToArray();
+    [Benchmark]
+    public bool SortedArrayContains()
+    {
+        var needle = _sortedGuidArray[67];
+        return _sortedGuidArray.Contains(needle);
+    }
 
     [Benchmark]
     public bool ArrayContains()
