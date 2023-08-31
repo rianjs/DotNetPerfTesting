@@ -15,8 +15,8 @@ namespace PerfTesting
             // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(CountSubstringTests)));
             // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(RegexTests)));
             // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(ContainsTests)));
-            BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(GuidTest)));
-            // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(StringBuilderTests)));
+            // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(GuidTest)));
+            BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(StringBuilderTests)));
             // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(SynchronizationTests)));
             // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(DateTimeTests)));
             // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(MathTrivia)));

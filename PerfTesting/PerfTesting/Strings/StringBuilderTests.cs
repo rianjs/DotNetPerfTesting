@@ -120,7 +120,7 @@ ORDER BY
             }
             return sb.ToString();
         }
-        
+
         [Benchmark]
         public string NaiveAppend()
         {
@@ -129,6 +129,23 @@ ORDER BY
             {
                 sb.Append("Hello ").AppendLine(i.ToString("0000"));
             }
+            return sb.ToString();
+        }
+
+        private static readonly Guid _guidA = new("84c1a235-a2c5-489b-8b42-1d3419bf7536");
+        private static readonly Guid _guidB = new("6e4a8b9d-f30a-4221-997b-df7d1fa5d49b");
+
+        [Benchmark]
+        public string GuidInterpolation()
+            => $"{_guidA}::{_guidB}";
+
+        [Benchmark]
+        public string GuidStringBuilder()
+        {
+            var sb = new StringBuilder();
+            sb.Append(_guidA);
+            sb.Append("::");
+            sb.Append(_guidB);
             return sb.ToString();
         }
     }
