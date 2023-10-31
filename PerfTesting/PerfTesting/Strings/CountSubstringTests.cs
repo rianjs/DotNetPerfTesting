@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using BenchmarkDotNet.Attributes;
 
 namespace PerfTesting.Strings

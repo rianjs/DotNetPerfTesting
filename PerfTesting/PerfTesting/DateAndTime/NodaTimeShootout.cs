@@ -1,5 +1,4 @@
-﻿using System;
-using BenchmarkDotNet.Attributes;
+﻿using BenchmarkDotNet.Attributes;
 using NodaTime.Text;
 
 namespace PerfTesting.DateAndTime
