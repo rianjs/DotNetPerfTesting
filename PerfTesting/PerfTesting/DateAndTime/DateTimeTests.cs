@@ -1,13 +1,13 @@
 ﻿using BenchmarkDotNet.Attributes;
 
-namespace PerfTesting.DateAndTime
-{
-    public class DateTimeTests
-    {
-        [Benchmark]
-        public DateTime GetDateTimeNow() => DateTime.Now;
+namespace PerfTesting.DateAndTime;
 
-        [Benchmark]
-        public DateTime GetDateTimeUtcNow() => DateTime.UtcNow;
-    }
+[MemoryDiagnoser, ShortRunJob]
+public class DateTimeTests
+{
+    [Benchmark]
+    public DateTime GetDateTimeNow() => DateTime.Now;
+
+    [Benchmark]
+    public DateTime GetDateTimeUtcNow() => DateTime.UtcNow;
 }

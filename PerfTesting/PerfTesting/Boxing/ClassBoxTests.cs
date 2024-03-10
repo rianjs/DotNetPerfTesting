@@ -53,7 +53,7 @@ public class ClassBoxTests
     }
 
     [Benchmark]
-    public void ToString()
+    public void AsString()
     {
         var container = new List<string>(_limit);
         for (var i = 0; i < 50; i++)

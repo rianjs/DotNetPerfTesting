@@ -1,16 +1,16 @@
 ﻿using BenchmarkDotNet.Attributes;
 using NodaTime.Text;
 
-namespace PerfTesting.DateAndTime
+namespace PerfTesting.DateAndTime;
+
+[MemoryDiagnoser, ShortRunJob]
+public class NodaTimeShootout
 {
-    public class NodaTimeShootout
-    {
-        private static readonly string _isoUtcString = DateTime.UtcNow.ToString("O");
+    private static readonly string _isoUtcString = DateTime.UtcNow.ToString("O");
 
-        [Benchmark]
-        public DateTime DateTimeParse() => DateTime.Parse(_isoUtcString).ToUniversalTime();
+    [Benchmark]
+    public DateTime DateTimeParse() => DateTime.Parse(_isoUtcString).ToUniversalTime();
 
-        [Benchmark]
-        public DateTime InstantPatternParse() => InstantPattern.ExtendedIso.Parse(_isoUtcString).Value.ToDateTimeUtc();
-    }
+    [Benchmark]
+    public DateTime InstantPatternParse() => InstantPattern.ExtendedIso.Parse(_isoUtcString).Value.ToDateTimeUtc();
 }

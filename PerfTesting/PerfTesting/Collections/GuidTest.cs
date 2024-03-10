@@ -2,6 +2,7 @@ using BenchmarkDotNet.Attributes;
 
 namespace PerfTesting.Collections;
 
+[MemoryDiagnoser, ShortRunJob]
 public class GuidTest
 {
     private static readonly List<Guid> _guidList = GetGuidList();

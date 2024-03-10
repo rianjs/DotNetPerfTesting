@@ -2,6 +2,7 @@ using BenchmarkDotNet.Attributes;
 
 namespace PerfTesting.Strings;
 
+[MemoryDiagnoser, ShortRunJob]
 public class ContainsTests
 {
     private const string _needle = "the";
