@@ -24,5 +24,6 @@ public class Runner
         BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(NodaTimeShootout)));
         BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(ClassBoxTests)));
         BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(StructBoxTests)));
+        BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(RegexVsSpan)));
     }
 }

@@ -8,14 +8,14 @@ public class CountSubstringTests
 {
     private const string _needle = "the";
 
-    private static readonly string[] _split = {_needle};
+    private static readonly string[] _split = [_needle];
+    private static readonly Regex _compiled = new(_needle, RegexOptions.Compiled);
+
     [Benchmark]
     public int CountSmallWithSplit() => Strings.SmallHaystack.Split(_split, StringSplitOptions.None).Length;
 
     [Benchmark]
     public int CountBigWithSplit() => Strings.Haystack.Split(_split, StringSplitOptions.None).Length;
-
-    private static readonly Regex _compiled = new(_needle, RegexOptions.Compiled);
 
     [Benchmark]
     public int CountSmallWithCompiledRegex() => _compiled.Match(Strings.SmallHaystack).Length;
