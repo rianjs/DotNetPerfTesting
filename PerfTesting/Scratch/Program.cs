@@ -1,6 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using Scratch;
+namespace Scratch;
 
 public class Program
 {

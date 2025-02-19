@@ -2,6 +2,7 @@
 using PerfTesting.Boxing;
 using PerfTesting.Collections;
 using PerfTesting.DateAndTime;
+using PerfTesting.Linq;
 using PerfTesting.Reflection;
 using PerfTesting.Strings;
 using PerfTesting.Synchronization;
@@ -27,6 +28,8 @@ public class Runner
         // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(StructBoxTests)));
         // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(RegexVsSpan)));
         // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(ReflectionTests)));
-        BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(SafeReplace)));
+        // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(SafeReplace)));
+        // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(LengthPropertyRead)));
+        BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(PredicateLocation)));
     }
 }
