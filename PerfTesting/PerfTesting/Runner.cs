@@ -33,6 +33,8 @@ public class Runner
         // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(LengthPropertyRead)));
         // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(PredicateLocation)));
         // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(PhoneNumberExtraction)));
-        BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(RecomposeTests)));
+        // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(RecomposeTests)));
+        BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(DictionaryInstantiationTests)));
+        BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(DictionaryLookupTests)));
     }
 }
