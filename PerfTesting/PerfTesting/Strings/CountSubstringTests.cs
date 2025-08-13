@@ -36,16 +36,18 @@ public class CountSubstringTests
     public int CountBigWithStaticRegex() => Regex.Matches(Strings.Haystack, _needle).Count;
 
     [Benchmark]
-    public void SearchBigWithCompiledRegex()
+    public bool SearchBigWithCompiledRegex()
     {
         var compiled = new Regex(_needle, RegexOptions.Compiled);
         var search = compiled.Match(Strings.Haystack);
+        return search.Success;
     }
 
     [Benchmark]
-    public void SearchBigWithRegex()
+    public bool SearchBigWithRegex()
     {
         var regex = new Regex(_needle);
         var search = regex.Match(Strings.Haystack);
+        return search.Success;
     }
 }
