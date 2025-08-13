@@ -16,9 +16,9 @@ public class Runner
     static void Main(string[] args)
     {
         // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(ExtensionMethods)));
-        // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(CountSubstringTests)));
+        BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(CountSubstringTests)));
         // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(RegexTests)));
-        // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(ContainsTests)));
+        // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(ContainsTests)));  // Fixed Contains benchmarks
         // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(GuidTest)));
         // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(StringBuilderTests)));
         // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(SynchronizationTests)));
@@ -34,7 +34,7 @@ public class Runner
         // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(PredicateLocation)));
         // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(PhoneNumberExtraction)));
         // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(RecomposeTests)));
-        BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(DictionaryInstantiationTests)));
-        BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(DictionaryLookupTests)));
+        // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(DictionaryInstantiationTests)));
+        // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(DictionaryLookupTests)));
     }
 }

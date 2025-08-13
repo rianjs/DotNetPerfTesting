@@ -72,3 +72,23 @@ All benchmark classes follow consistent patterns:
 - Results include statistical analysis (mean, error, standard deviation)
 - Test data uses realistic scenarios (e.g., Hobbit text excerpt for string operations)
 - Focus on comparing different .NET API approaches for the same functionality
+
+## Code Style and Guidelines
+
+**Language**: All code is C#
+
+**Code Style**:
+- Use `var` when type is obvious from context
+- Member variables use `_lowerCamel` naming convention  
+- Use braces with conditionals and loops in Allman style
+- In methods with many conditionals, use return ternary for final two cases when readable
+
+**Performance-Focused Practices**:
+- For string parsing/manipulation, prefer `Span<T>` and indexing over `Split()` when equally readable
+- Use nullable reference types; prefer empty collections/strings over null when possible
+- Benchmark methods should return results to prevent dead code elimination
+
+**Code Quality**:
+- Prefer elegance, composability, and maintainability over cleverness
+- Comments should explain "why" not "what" - avoid if context makes intent clear
+- When showing code examples, focus on the logic rather than using statements or namespace details
