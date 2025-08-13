@@ -39,6 +39,23 @@ public class TypeEqualityTests
     private static readonly LargeReadonlyStruct _largeReadonlyStruct2 = new(1, 2, 3, 4, 5, 6, 7, 8);
     private static readonly LargeReadonlyStruct _largeReadonlyStruct3 = new(9, 10, 11, 12, 13, 14, 15, 16);
 
+    // Unoptimized struct types (no IEquatable implementation)
+    private static readonly SmallStructUnoptimized _smallStructUnoptimized1 = new(1, 2, 3, 4);
+    private static readonly SmallStructUnoptimized _smallStructUnoptimized2 = new(1, 2, 3, 4);
+    private static readonly SmallStructUnoptimized _smallStructUnoptimized3 = new(5, 6, 7, 8);
+    
+    private static readonly SmallReadonlyStructUnoptimized _smallReadonlyStructUnoptimized1 = new(1, 2, 3, 4);
+    private static readonly SmallReadonlyStructUnoptimized _smallReadonlyStructUnoptimized2 = new(1, 2, 3, 4);
+    private static readonly SmallReadonlyStructUnoptimized _smallReadonlyStructUnoptimized3 = new(5, 6, 7, 8);
+    
+    private static readonly LargeStructUnoptimized _largeStructUnoptimized1 = new(1, 2, 3, 4, 5, 6, 7, 8);
+    private static readonly LargeStructUnoptimized _largeStructUnoptimized2 = new(1, 2, 3, 4, 5, 6, 7, 8);
+    private static readonly LargeStructUnoptimized _largeStructUnoptimized3 = new(9, 10, 11, 12, 13, 14, 15, 16);
+    
+    private static readonly LargeReadonlyStructUnoptimized _largeReadonlyStructUnoptimized1 = new(1, 2, 3, 4, 5, 6, 7, 8);
+    private static readonly LargeReadonlyStructUnoptimized _largeReadonlyStructUnoptimized2 = new(1, 2, 3, 4, 5, 6, 7, 8);
+    private static readonly LargeReadonlyStructUnoptimized _largeReadonlyStructUnoptimized3 = new(9, 10, 11, 12, 13, 14, 15, 16);
+
     private static readonly HashSet<SmallStruct> _smallStructSet = new() { _smallStruct1, _smallStruct3 };
     private static readonly HashSet<SmallRecord> _smallRecordSet = new() { _smallRecord1, _smallRecord3 };
     private static readonly HashSet<SmallReadonlyRecordStruct> _smallReadonlyRecordStructSet = new() { _smallReadonlyRecordStruct1, _smallReadonlyRecordStruct3 };
@@ -48,6 +65,11 @@ public class TypeEqualityTests
     private static readonly HashSet<LargeRecord> _largeRecordSet = new() { _largeRecord1, _largeRecord3 };
     private static readonly HashSet<LargeReadonlyRecordStruct> _largeReadonlyRecordStructSet = new() { _largeReadonlyRecordStruct1, _largeReadonlyRecordStruct3 };
     private static readonly HashSet<LargeReadonlyStruct> _largeReadonlyStructSet = new() { _largeReadonlyStruct1, _largeReadonlyStruct3 };
+    
+    private static readonly HashSet<SmallStructUnoptimized> _smallStructUnoptimizedSet = new() { _smallStructUnoptimized1, _smallStructUnoptimized3 };
+    private static readonly HashSet<SmallReadonlyStructUnoptimized> _smallReadonlyStructUnoptimizedSet = new() { _smallReadonlyStructUnoptimized1, _smallReadonlyStructUnoptimized3 };
+    private static readonly HashSet<LargeStructUnoptimized> _largeStructUnoptimizedSet = new() { _largeStructUnoptimized1, _largeStructUnoptimized3 };
+    private static readonly HashSet<LargeReadonlyStructUnoptimized> _largeReadonlyStructUnoptimizedSet = new() { _largeReadonlyStructUnoptimized1, _largeReadonlyStructUnoptimized3 };
 
     // Equality Tests - Small Types
     [Benchmark] public bool SmallStruct_EqualityEqual() => _smallStruct1 == _smallStruct2;
@@ -120,4 +142,30 @@ public class TypeEqualityTests
     [Benchmark] public bool LargeReadonlyRecordStruct_SetContainsFalse() => _largeReadonlyRecordStructSet.Contains(_largeReadonlyRecordStruct2);
     [Benchmark] public bool LargeReadonlyStruct_SetContainsTrue() => _largeReadonlyStructSet.Contains(_largeReadonlyStruct1);
     [Benchmark] public bool LargeReadonlyStruct_SetContainsFalse() => _largeReadonlyStructSet.Contains(_largeReadonlyStruct2);
+
+    // Unoptimized Struct Tests - Small Types (no IEquatable, uses reflection-based equality)
+    [Benchmark] public bool SmallStructUnoptimized_EqualsEqual() => _smallStructUnoptimized1.Equals(_smallStructUnoptimized2);
+    [Benchmark] public bool SmallStructUnoptimized_EqualsNotEqual() => _smallStructUnoptimized1.Equals(_smallStructUnoptimized3);
+    [Benchmark] public int SmallStructUnoptimized_GetHashCode() => _smallStructUnoptimized1.GetHashCode();
+    [Benchmark] public bool SmallStructUnoptimized_SetContainsTrue() => _smallStructUnoptimizedSet.Contains(_smallStructUnoptimized1);
+    [Benchmark] public bool SmallStructUnoptimized_SetContainsFalse() => _smallStructUnoptimizedSet.Contains(_smallStructUnoptimized2);
+
+    [Benchmark] public bool SmallReadonlyStructUnoptimized_EqualsEqual() => _smallReadonlyStructUnoptimized1.Equals(_smallReadonlyStructUnoptimized2);
+    [Benchmark] public bool SmallReadonlyStructUnoptimized_EqualsNotEqual() => _smallReadonlyStructUnoptimized1.Equals(_smallReadonlyStructUnoptimized3);
+    [Benchmark] public int SmallReadonlyStructUnoptimized_GetHashCode() => _smallReadonlyStructUnoptimized1.GetHashCode();
+    [Benchmark] public bool SmallReadonlyStructUnoptimized_SetContainsTrue() => _smallReadonlyStructUnoptimizedSet.Contains(_smallReadonlyStructUnoptimized1);
+    [Benchmark] public bool SmallReadonlyStructUnoptimized_SetContainsFalse() => _smallReadonlyStructUnoptimizedSet.Contains(_smallReadonlyStructUnoptimized2);
+
+    // Unoptimized Struct Tests - Large Types
+    [Benchmark] public bool LargeStructUnoptimized_EqualsEqual() => _largeStructUnoptimized1.Equals(_largeStructUnoptimized2);
+    [Benchmark] public bool LargeStructUnoptimized_EqualsNotEqual() => _largeStructUnoptimized1.Equals(_largeStructUnoptimized3);
+    [Benchmark] public int LargeStructUnoptimized_GetHashCode() => _largeStructUnoptimized1.GetHashCode();
+    [Benchmark] public bool LargeStructUnoptimized_SetContainsTrue() => _largeStructUnoptimizedSet.Contains(_largeStructUnoptimized1);
+    [Benchmark] public bool LargeStructUnoptimized_SetContainsFalse() => _largeStructUnoptimizedSet.Contains(_largeStructUnoptimized2);
+
+    [Benchmark] public bool LargeReadonlyStructUnoptimized_EqualsEqual() => _largeReadonlyStructUnoptimized1.Equals(_largeReadonlyStructUnoptimized2);
+    [Benchmark] public bool LargeReadonlyStructUnoptimized_EqualsNotEqual() => _largeReadonlyStructUnoptimized1.Equals(_largeReadonlyStructUnoptimized3);
+    [Benchmark] public int LargeReadonlyStructUnoptimized_GetHashCode() => _largeReadonlyStructUnoptimized1.GetHashCode();
+    [Benchmark] public bool LargeReadonlyStructUnoptimized_SetContainsTrue() => _largeReadonlyStructUnoptimizedSet.Contains(_largeReadonlyStructUnoptimized1);
+    [Benchmark] public bool LargeReadonlyStructUnoptimized_SetContainsFalse() => _largeReadonlyStructUnoptimizedSet.Contains(_largeReadonlyStructUnoptimized2);
 }
