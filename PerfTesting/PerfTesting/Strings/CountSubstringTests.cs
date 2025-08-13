@@ -18,22 +18,22 @@ public class CountSubstringTests
     public int CountBigWithSplit() => Strings.Haystack.Split(_split, StringSplitOptions.None).Length - 1;
 
     [Benchmark]
-    public int CountSmallWithCompiledRegex() => _compiled.Match(Strings.SmallHaystack).Length;
+    public int CountSmallWithCompiledRegex() => _compiled.Matches(Strings.SmallHaystack).Count;
 
     [Benchmark]
-    public int CountBigWithCompiledRegex() => _compiled.Match(Strings.Haystack).Length;
+    public int CountBigWithCompiledRegex() => _compiled.Matches(Strings.Haystack).Count;
 
     [Benchmark]
-    public int CountSmallWithRegex() => new Regex(_needle).Match(Strings.SmallHaystack).Length;
+    public int CountSmallWithRegex() => new Regex(_needle).Matches(Strings.SmallHaystack).Count;
 
     [Benchmark]
-    public int CountBigWithRegex() => new Regex(_needle).Match(Strings.Haystack).Length;
+    public int CountBigWithRegex() => new Regex(_needle).Matches(Strings.Haystack).Count;
 
     [Benchmark]
-    public int CountSmallWithStaticRegex() => Regex.Match(Strings.SmallHaystack, _needle).Length;
+    public int CountSmallWithStaticRegex() => Regex.Matches(Strings.SmallHaystack, _needle).Count;
 
     [Benchmark]
-    public int CountBigWithStaticRegex() => Regex.Match(Strings.Haystack, _needle).Length;
+    public int CountBigWithStaticRegex() => Regex.Matches(Strings.Haystack, _needle).Count;
 
     [Benchmark]
     public void SearchBigWithCompiledRegex()
