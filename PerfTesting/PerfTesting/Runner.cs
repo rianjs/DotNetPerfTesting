@@ -8,6 +8,7 @@ using PerfTesting.Reflection;
 using PerfTesting.Strings;
 using PerfTesting.Synchronization;
 using PerfTesting.Trivia;
+using PerfTesting.Types;
 
 namespace PerfTesting;
 
@@ -16,7 +17,7 @@ public class Runner
     static void Main(string[] args)
     {
         // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(ExtensionMethods)));
-        BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(CountSubstringTests)));
+        // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(CountSubstringTests)));  // Comprehensive substring counting benchmarks
         // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(RegexTests)));
         // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(ContainsTests)));  // Fixed Contains benchmarks
         // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(GuidTest)));
@@ -34,6 +35,7 @@ public class Runner
         // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(PredicateLocation)));
         // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(PhoneNumberExtraction)));
         // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(RecomposeTests)));
+        BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(TypeEqualityTests)));  // Type equality performance benchmarks
         // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(DictionaryInstantiationTests)));
         // BenchmarkRunner.Run(BenchmarkConverter.TypeToBenchmarks(typeof(DictionaryLookupTests)));
     }
