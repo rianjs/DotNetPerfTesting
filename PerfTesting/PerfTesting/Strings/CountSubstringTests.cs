@@ -12,10 +12,10 @@ public class CountSubstringTests
     private static readonly Regex _compiled = new(_needle, RegexOptions.Compiled);
 
     [Benchmark]
-    public int CountSmallWithSplit() => Strings.SmallHaystack.Split(_split, StringSplitOptions.None).Length;
+    public int CountSmallWithSplit() => Strings.SmallHaystack.Split(_split, StringSplitOptions.None).Length - 1;
 
     [Benchmark]
-    public int CountBigWithSplit() => Strings.Haystack.Split(_split, StringSplitOptions.None).Length;
+    public int CountBigWithSplit() => Strings.Haystack.Split(_split, StringSplitOptions.None).Length - 1;
 
     [Benchmark]
     public int CountSmallWithCompiledRegex() => _compiled.Match(Strings.SmallHaystack).Length;
