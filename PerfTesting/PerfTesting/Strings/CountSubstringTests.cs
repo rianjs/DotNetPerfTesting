@@ -50,4 +50,90 @@ public class CountSubstringTests
         var search = regex.Match(Strings.Haystack);
         return search.Success;
     }
+
+    [Benchmark]
+    public int CountSmallWithIndexOf()
+    {
+        var text = Strings.SmallHaystack;
+        int count = 0, index = 0;
+        while ((index = text.IndexOf(_needle, index)) != -1)
+        {
+            count++;
+            index += _needle.Length;
+        }
+        return count;
+    }
+
+    [Benchmark]
+    public int CountBigWithIndexOf()
+    {
+        var text = Strings.Haystack;
+        int count = 0, index = 0;
+        while ((index = text.IndexOf(_needle, index)) != -1)
+        {
+            count++;
+            index += _needle.Length;
+        }
+        return count;
+    }
+
+    [Benchmark]
+    public int CountSmallWithIndexOfOrdinal()
+    {
+        var text = Strings.SmallHaystack;
+        int count = 0, index = 0;
+        while ((index = text.IndexOf(_needle, index, StringComparison.Ordinal)) != -1)
+        {
+            count++;
+            index += _needle.Length;
+        }
+        return count;
+    }
+
+    [Benchmark]
+    public int CountBigWithIndexOfOrdinal()
+    {
+        var text = Strings.Haystack;
+        int count = 0, index = 0;
+        while ((index = text.IndexOf(_needle, index, StringComparison.Ordinal)) != -1)
+        {
+            count++;
+            index += _needle.Length;
+        }
+        return count;
+    }
+
+    [Benchmark]
+    public int CountSmallWithSpan()
+    {
+        ReadOnlySpan<char> text = Strings.SmallHaystack.AsSpan();
+        ReadOnlySpan<char> needle = _needle.AsSpan();
+        int count = 0, index = 0;
+        while ((index = text.Slice(index).IndexOf(needle)) != -1)
+        {
+            count++;
+            index += needle.Length;
+        }
+        return count;
+    }
+
+    [Benchmark]
+    public int CountBigWithSpan()
+    {
+        ReadOnlySpan<char> text = Strings.Haystack.AsSpan();
+        ReadOnlySpan<char> needle = _needle.AsSpan();
+        int count = 0, index = 0;
+        while ((index = text.Slice(index).IndexOf(needle)) != -1)
+        {
+            count++;
+            index += needle.Length;
+        }
+        return count;
+    }
+
+    [Benchmark]
+    public int CountSmallWithReplace() => (Strings.SmallHaystack.Length - Strings.SmallHaystack.Replace(_needle, "").Length) / _needle.Length;
+
+    [Benchmark]
+    public int CountBigWithReplace() => (Strings.Haystack.Length - Strings.Haystack.Replace(_needle, "").Length) / _needle.Length;
 }
