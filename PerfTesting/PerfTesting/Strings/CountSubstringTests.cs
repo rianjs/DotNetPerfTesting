@@ -136,4 +136,108 @@ public class CountSubstringTests
 
     [Benchmark]
     public int CountBigWithReplace() => (Strings.Haystack.Length - Strings.Haystack.Replace(_needle, "").Length) / _needle.Length;
+
+    [Benchmark]
+    public int CountSmallWithIndexOfOrdinalIgnoreCase()
+    {
+        var text = Strings.SmallHaystack;
+        int count = 0, index = 0;
+        while ((index = text.IndexOf(_needle, index, StringComparison.OrdinalIgnoreCase)) != -1)
+        {
+            count++;
+            index += _needle.Length;
+        }
+        return count;
+    }
+
+    [Benchmark]
+    public int CountBigWithIndexOfOrdinalIgnoreCase()
+    {
+        var text = Strings.Haystack;
+        int count = 0, index = 0;
+        while ((index = text.IndexOf(_needle, index, StringComparison.OrdinalIgnoreCase)) != -1)
+        {
+            count++;
+            index += _needle.Length;
+        }
+        return count;
+    }
+
+    [Benchmark]
+    public int CountSmallWithIndexOfCurrentCultureIgnoreCase()
+    {
+        var text = Strings.SmallHaystack;
+        int count = 0, index = 0;
+        while ((index = text.IndexOf(_needle, index, StringComparison.CurrentCultureIgnoreCase)) != -1)
+        {
+            count++;
+            index += _needle.Length;
+        }
+        return count;
+    }
+
+    [Benchmark]
+    public int CountBigWithIndexOfCurrentCultureIgnoreCase()
+    {
+        var text = Strings.Haystack;
+        int count = 0, index = 0;
+        while ((index = text.IndexOf(_needle, index, StringComparison.CurrentCultureIgnoreCase)) != -1)
+        {
+            count++;
+            index += _needle.Length;
+        }
+        return count;
+    }
+
+    [Benchmark]
+    public int CountSmallWithIndexOfInvariantCulture()
+    {
+        var text = Strings.SmallHaystack;
+        int count = 0, index = 0;
+        while ((index = text.IndexOf(_needle, index, StringComparison.InvariantCulture)) != -1)
+        {
+            count++;
+            index += _needle.Length;
+        }
+        return count;
+    }
+
+    [Benchmark]
+    public int CountBigWithIndexOfInvariantCulture()
+    {
+        var text = Strings.Haystack;
+        int count = 0, index = 0;
+        while ((index = text.IndexOf(_needle, index, StringComparison.InvariantCulture)) != -1)
+        {
+            count++;
+            index += _needle.Length;
+        }
+        return count;
+    }
+
+    [Benchmark]
+    public int CountSmallWithIndexOfInvariantCultureIgnoreCase()
+    {
+        var text = Strings.SmallHaystack;
+        int count = 0, index = 0;
+        while ((index = text.IndexOf(_needle, index, StringComparison.InvariantCultureIgnoreCase)) != -1)
+        {
+            count++;
+            index += _needle.Length;
+        }
+        return count;
+    }
+
+    [Benchmark]
+    public int CountBigWithIndexOfInvariantCultureIgnoreCase()
+    {
+        var text = Strings.Haystack;
+        int count = 0, index = 0;
+        while ((index = text.IndexOf(_needle, index, StringComparison.InvariantCultureIgnoreCase)) != -1)
+        {
+            count++;
+            index += _needle.Length;
+        }
+        return count;
+    }
 }
