@@ -92,3 +92,9 @@ All benchmark classes follow consistent patterns:
 - Prefer elegance, composability, and maintainability over cleverness
 - Comments should explain "why" not "what" - avoid if context makes intent clear
 - When showing code examples, focus on the logic rather than using statements or namespace details
+
+## Git Commit Guidelines
+
+- NEVER include references to Claude, AI assistance, or tool usage in commit messages or pull request descriptions
+- Keep commit messages concise and focused on the technical changes made
+- Use standard conventional commit format when applicable
