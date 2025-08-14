@@ -106,13 +106,16 @@ public class CountSubstringTests
     [Benchmark]
     public int CountSmallWithSpan()
     {
-        ReadOnlySpan<char> text = Strings.SmallHaystack.AsSpan();
-        ReadOnlySpan<char> needle = _needle.AsSpan();
+        var text = Strings.SmallHaystack.AsSpan();
+        var needle = _needle.AsSpan();
         int count = 0, index = 0;
-        while ((index = text.Slice(index).IndexOf(needle)) != -1)
+
+        while (index <= text.Length - needle.Length)
         {
+            var foundIndex = text.Slice(index).IndexOf(needle);
+            if (foundIndex == -1) break;
             count++;
-            index += needle.Length;
+            index += foundIndex + needle.Length;  // Add foundIndex to account for slice offset
         }
         return count;
     }
@@ -120,13 +123,16 @@ public class CountSubstringTests
     [Benchmark]
     public int CountBigWithSpan()
     {
-        ReadOnlySpan<char> text = Strings.Haystack.AsSpan();
-        ReadOnlySpan<char> needle = _needle.AsSpan();
+        var text = Strings.Haystack.AsSpan();
+        var needle = _needle.AsSpan();
         int count = 0, index = 0;
-        while ((index = text.Slice(index).IndexOf(needle)) != -1)
+
+        while (index <= text.Length - needle.Length)
         {
+            var foundIndex = text.Slice(index).IndexOf(needle);
+            if (foundIndex == -1) break;
             count++;
-            index += needle.Length;
+            index += foundIndex + needle.Length;  // Add foundIndex to account for slice offset
         }
         return count;
     }
