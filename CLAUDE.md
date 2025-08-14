@@ -52,6 +52,12 @@ This is a .NET performance testing project using **BenchmarkDotNet** to compare 
 - Reflection vs cached reflection
 - Lock vs SemaphoreSlim vs FrozenDictionary
 
+**Type System Performance** (`Types/`):
+- Struct vs readonly struct vs record vs readonly record struct equality performance
+- Cache line boundary performance testing (16, 32, 64, 128-byte types)
+- IEquatable implementation impact on performance (optimized vs unoptimized variants)
+- HashSet.Contains performance across different type implementations
+
 ### Benchmark Patterns
 
 All benchmark classes follow consistent patterns:
@@ -73,6 +79,22 @@ All benchmark classes follow consistent patterns:
 - Test data uses realistic scenarios (e.g., Hobbit text excerpt for string operations)
 - Focus on comparing different .NET API approaches for the same functionality
 
+### Types Directory Structure
+
+The `Types/` directory contains consolidated type definition files organized by byte size:
+- **Byte16Types.cs** - 16-byte types (4 int fields) for baseline performance
+- **Byte32Types.cs** - 32-byte types (8 int fields) for moderate size testing
+- **Byte64Types.cs** - 64-byte types (16 int fields) for cache line boundary testing
+- **Byte128Types.cs** - 128-byte types (32 int fields) for cross-cache-line performance analysis
+
+Each file contains 6 type variants:
+1. `Struct` - Mutable struct with IEquatable implementation
+2. `ReadonlyStruct` - Readonly struct with IEquatable implementation
+3. `Record` - Record class with auto-generated equality
+4. `ReadonlyRecordStruct` - Readonly record struct with auto-generated equality
+5. `StructUnoptimized` - Struct without IEquatable (uses reflection-based equality)
+6. `ReadonlyStructUnoptimized` - Readonly struct without IEquatable
+
 ## Code Style and Guidelines
 
 **Language**: All code is C#
@@ -82,6 +104,14 @@ All benchmark classes follow consistent patterns:
 - Member variables use `_lowerCamel` naming convention  
 - Use braces with conditionals and loops in Allman style
 - In methods with many conditionals, use return ternary for final two cases when readable
+- Benchmark methods use multi-line format with `[Benchmark]` attribute on separate line and `=>` indented
+
+**Benchmark Method Formatting**:
+```csharp
+[Benchmark]
+public bool SomeMethod()
+    => expression;
+```
 
 **Performance-Focused Practices**:
 - For string parsing/manipulation, prefer `Span<T>` and indexing over `Split()` when equally readable
